@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz de HTML</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    .question {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+    .option {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      background: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .option:hover {
+      background: #ddd;
+    }
+    .correct {
+      background: #c8e6c9 !important;
+      color: #256029;
+      font-weight: bold;
+    }
+    .wrong {
+      background: #ffcdd2 !important;
+      color: #b71c1c;
+      font-weight: bold;
+    }
+    #score {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quiz de HTML</h1>
+
+  <div id="quiz"></div>
+  <div id="score"></div>
+
+  <script>
+    const questions = [
+      {
+        q: "1. Qual elemento HTML é usado para representar o título principal de uma página?",
+        options: ["<title>", "<h1>", "<header>", "<head>"],
+        correct: 1
+      },
+      {
+        q: "2. Qual tag é usada para representar um parágrafo em HTML?",
+        options: ["<p>", "<par>", "<text>", "<pre>"],
+        correct: 0
+      },
+      {
+        q: "3. O elemento <abbr> é utilizado para:",
+        options: [
+          "Inserir links externos",
+          "Representar abreviações com significado",
+          "Adicionar texto em itálico",
+          "Nenhuma das anteriores"
+        ],
+        correct: 1
+      },
+      {
+        q: "4. Qual elemento representa o endereço de contato de uma pessoa ou empresa?",
+        options: ["<address>", "<footer>", "<div id='endereco'>", "<contact>"],
+        correct: 0
+      },
+      {
+        q: "5. Qual tag cria uma lista ordenada em HTML?",
+        options: ["<ul>", "<ol>", "<li>", "<list>"],
+        correct: 1
+      },
+      {
+        q: "6. O atributo alt em imagens serve para:",
+        options: [
+          "Definir a posição da imagem",
+          "Exibir uma legenda abaixo da imagem",
+          "Mostrar texto alternativo caso a imagem não carregue",
+          "Alinhar a imagem à esquerda ou direita"
+        ],
+        correct: 2
+      },
+      {
+        q: "7. Qual a forma correta de criar um hiperlink absoluto para o site da W3C?",
+        options: [
+          "<a>www.w3.org</a>",
+          "<a href='w3.org'>W3C</a>",
+          "<a src='https://www.w3.org/'>W3C</a>",
+          "<a href='https://www.w3.org/'>W3C</a>"
+        ],
+        correct: 3
+      },
+      {
+        q: "8. Qual tag é usada para criar uma linha em uma tabela?",
+        options: ["<th>", "<td>", "<tr>", "<tlinha>"],
+        correct: 2
+      },
+      {
+        q: "9. No HTML, <th> é utilizado para:",
+        options: [
+          "Criar células de cabeçalho da tabela",
+          "Definir título da página",
+          "Inserir texto em negrito",
+          "Representar uma linha na tabela"
+        ],
+        correct: 0
+      },
+      {
+        q: "10. Os elementos <p>, <h1>, <table> e <div> são exemplos de:",
+        options: [
+          "Elementos de linha",
+          "Atributos globais",
+          "Elementos de bloco",
+          "Tags semânticas obrigatórias"
+        ],
+        correct: 2
+      },
+      {
+        q: "11. Os elementos <a>, <img> e <span> são exemplos de:",
+        options: [
+          "Elementos de linha",
+          "Elementos de bloco",
+          "Estruturas de tabelas",
+          "Atributos obrigatórios"
+        ],
+        correct: 0
+      },
+      {
