@@ -148,3 +148,103 @@
         correct: 0
       },
       {
+        q: "12. O que a tag <br> faz?",
+        options: ["Cria um parágrafo", "Quebra uma linha", "Adiciona um espaço", "Nenhuma das anteriores"],
+        correct: 1
+      },
+      {
+        q: "13. Qual atributo especifica um id único para um elemento HTML?",
+        options: ["class", "id", "name", "target"],
+        correct: 1
+      },
+      {
+        q: "14. Qual elemento HTML é usado para especificar um rodapé para um documento ou seção?",
+        options: ["<bottom>", "<footer>", "<section>", "<header>"],
+        correct: 1
+      },
+      {
+        q: "15. Qual elemento HTML define links de navegação?",
+        options: ["<nav>", "<navigate>", "<navigation>", "<navlinks>"],
+        correct: 0
+      },
+      {
+        q: "16. Qual elemento HTML é usado para incorporar um vídeo em uma página da web?",
+        options: ["<media>", "<video>", "<movie>", "<embed>"],
+        correct: 1
+      },
+      {
+        q: "17. Em HTML, qual atributo é usado para especificar que um campo de entrada deve ser preenchido?",
+        options: ["placeholder", "validate", "required", "mandatory"],
+        correct: 2
+      },
+      {
+        q: "18. Qual tipo de input define um controle deslizante?",
+        options: ["slider", "range", "drag", "scroll"],
+        correct: 1
+      },
+      {
+        q: "19. Qual elemento HTML é usado para definir uma lista não ordenada?",
+        options: ["<ol>", "<li>", "<list>", "<ul>"],
+        correct: 3
+      }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    const scoreContainer = document.getElementById('score');
+    let score = 0;
+    let currentQuestionIndex = 0;
+
+    function showQuestion(index) {
+      const questionData = questions[index];
+      const questionElement = document.createElement('div');
+      questionElement.className = 'question';
+      questionElement.innerHTML = `<h2>${questionData.q}</h2>`;
+
+      questionData.options.forEach((option, i) => {
+        const optionElement = document.createElement('span');
+        optionElement.className = 'option';
+        optionElement.textContent = option;
+        optionElement.onclick = () => checkAnswer(i, optionElement, index);
+        questionElement.appendChild(optionElement);
+      });
+
+      quizContainer.innerHTML = '';
+      quizContainer.appendChild(questionElement);
+    }
+
+    function checkAnswer(selectedIndex, optionElement, questionIndex) {
+      const questionData = questions[questionIndex];
+      const options = optionElement.parentElement.querySelectorAll('.option');
+
+      // Disable further clicks
+      options.forEach(opt => opt.onclick = null);
+
+      if (selectedIndex === questionData.correct) {
+        optionElement.classList.add('correct');
+        score++;
+      } else {
+        optionElement.classList.add('wrong');
+        // Highlight the correct answer
+        options[questionData.correct].classList.add('correct');
+      }
+
+      // Move to the next question after a short delay
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion(currentQuestionIndex);
+        } else {
+          showScore();
+        }
+      }, 1500);
+    }
+
+    function showScore() {
+      quizContainer.innerHTML = '';
+      scoreContainer.innerHTML = `Você acertou ${score} de ${questions.length} perguntas!`;
+    }
+
+    showQuestion(currentQuestionIndex);
+  </script>
+</body>
+</html>
